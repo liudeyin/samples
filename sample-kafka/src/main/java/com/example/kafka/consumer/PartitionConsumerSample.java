@@ -33,6 +33,8 @@ public class PartitionConsumerSample {
         consumer.assign(Arrays.asList(p0));
 
         while (true) {
+            //=====指定从第100条开始消费=====
+            consumer.seek(p0, 100);
             //10S获取一次消息
             ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(10000));
             for (ConsumerRecord<String, String> record : records) {
